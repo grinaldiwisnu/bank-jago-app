@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gin_finans/widget/base_button.dart';
+import 'package:gin_finans/widget/dropdown_custom.dart';
 
 class PersonalUI extends StatefulWidget {
   final int slideIndex;
@@ -13,6 +14,16 @@ class PersonalUI extends StatefulWidget {
 
 class _PersonalUIState extends State<PersonalUI> {
   final formKey = GlobalKey<FormState>();
+  List<String> listGoals = [
+    "Saving 1-10M",
+    "Saving 11-20M",
+    "Saving 21-30M",
+    "Saving Above 50M"
+  ];
+  List<String> listIncome = ["1-5M", "6-15M", "16-25M", "Above 25M"];
+  List<String> listExpense = ["1-5M", "6-15M", "16-25M", "Above 25M"];
+
+  int selectedGoals, selectedIncome, selectedExpense;
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +55,44 @@ class _PersonalUIState extends State<PersonalUI> {
                     ),
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(top: 25, bottom: 35),
-                      child: Container()),
+                      padding: const EdgeInsets.only(
+                        top: 45,
+                      ),
+                      child: DropdownCustom(
+                        title: "Goal for activation",
+                        list: listGoals,
+                        onChange: (val) {
+                          selectedGoals = val;
+                        },
+                        groupValue: selectedGoals,
+                        label: "- Choose Option -",
+                      )),
+                  Padding(
+                      padding: const EdgeInsets.only(
+                        top: 25,
+                      ),
+                      child: DropdownCustom(
+                        title: "Monthly income",
+                        list: listIncome,
+                        onChange: (val) {
+                          selectedIncome = val;
+                        },
+                        groupValue: selectedIncome,
+                        label: "- Choose Option -",
+                      )),
+                  Padding(
+                      padding: const EdgeInsets.only(
+                        top: 25,
+                      ),
+                      child: DropdownCustom(
+                        title: "Monthly expense",
+                        list: listExpense,
+                        onChange: (val) {
+                          selectedExpense = val;
+                        },
+                        groupValue: selectedExpense,
+                        label: "- Choose Option -",
+                      )),
                 ],
               ),
             ),
@@ -55,7 +102,12 @@ class _PersonalUIState extends State<PersonalUI> {
                 bottom: MediaQuery.of(context).viewInsets.bottom),
             child: BaseButton(
               onTap: () {
-                if (formKey.currentState.validate()) {
+                if ((selectedIncome != null &&
+                        selectedGoals != null &&
+                        selectedExpense != null) &&
+                    (selectedIncome > 0 &&
+                        selectedGoals > 0 &&
+                        selectedExpense > 0)) {
                   widget.next(true);
                 } else {
                   widget.next(false);

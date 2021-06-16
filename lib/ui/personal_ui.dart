@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gin_finans/widget/base_button.dart';
-import 'package:gin_finans/widget/page_indicator.dart';
 
 class PersonalUI extends StatefulWidget {
   final int slideIndex;
@@ -27,45 +26,8 @@ class _PersonalUIState extends State<PersonalUI> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    margin: EdgeInsets.only(top: 5, bottom: 35),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        PageIndicator(
-                          number: 1,
-                          current: widget.slideIndex + 1,
-                        ),
-                        Container(
-                          height: 2,
-                          width: MediaQuery.of(context).size.width / 7,
-                          color: Colors.black,
-                        ),
-                        PageIndicator(
-                          number: 2,
-                          current: widget.slideIndex + 1,
-                        ),
-                        Container(
-                          height: 2,
-                          width: MediaQuery.of(context).size.width / 7,
-                          color: Colors.black,
-                        ),
-                        PageIndicator(
-                          number: 3,
-                          current: widget.slideIndex + 1,
-                        ),
-                        Container(
-                          height: 2,
-                          width: MediaQuery.of(context).size.width / 7,
-                          color: Colors.black,
-                        ),
-                        PageIndicator(
-                          number: 4,
-                          current: widget.slideIndex + 1,
-                        ),
-                      ],
-                    ),
+                  SizedBox(
+                    height: 35,
                   ),
                   Text(
                     "Personal Information",
@@ -95,6 +57,8 @@ class _PersonalUIState extends State<PersonalUI> {
               onTap: () {
                 if (formKey.currentState.validate()) {
                   widget.next(true);
+                } else {
+                  widget.next(false);
                 }
               },
             ),

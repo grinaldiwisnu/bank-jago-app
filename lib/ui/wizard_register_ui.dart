@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gin_finans/ui/password_ui.dart';
 import 'package:gin_finans/ui/personal_ui.dart';
+import 'package:gin_finans/widget/page_indicator.dart';
 
 class WizardRegisterUI extends StatefulWidget {
   WizardRegisterUI({Key key}) : super(key: key);
@@ -68,12 +69,52 @@ class _WizardRegisterUIState extends State<WizardRegisterUI> {
           backgroundColor: Color(0xff3C80E3),
           shadowColor: Colors.transparent,
         ),
+        backgroundColor: Color(0xff3C80E3),
         body: SafeArea(
-          child: Stack(
-            fit: StackFit.loose,
-            alignment: Alignment.topCenter,
+          child: Column(
             children: [
               Container(
+                color: Color(0xff3C80E3),
+                padding: EdgeInsets.only(top: 5, bottom: 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    PageIndicator(
+                      number: 1,
+                      current: slideIndex + 1,
+                    ),
+                    Container(
+                      height: 2,
+                      width: MediaQuery.of(context).size.width / 7,
+                      color: Colors.black,
+                    ),
+                    PageIndicator(
+                      number: 2,
+                      current: slideIndex + 1,
+                    ),
+                    Container(
+                      height: 2,
+                      width: MediaQuery.of(context).size.width / 7,
+                      color: Colors.black,
+                    ),
+                    PageIndicator(
+                      number: 3,
+                      current: slideIndex + 1,
+                    ),
+                    Container(
+                      height: 2,
+                      width: MediaQuery.of(context).size.width / 7,
+                      color: Colors.black,
+                    ),
+                    PageIndicator(
+                      number: 4,
+                      current: slideIndex + 1,
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
                 child: PageView(
                   controller: pageController,
                   pageSnapping: true,

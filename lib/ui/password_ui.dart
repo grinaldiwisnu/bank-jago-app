@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gin_finans/utils/extensions.dart';
 import 'package:gin_finans/widget/base_button.dart';
-import 'package:gin_finans/widget/page_indicator.dart';
 
 class PasswordUI extends StatefulWidget {
   final int slideIndex;
@@ -42,45 +41,8 @@ class _PasswordUIState extends State<PasswordUI> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    margin: EdgeInsets.only(top: 5, bottom: 35),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        PageIndicator(
-                          number: 1,
-                          current: widget.slideIndex + 1,
-                        ),
-                        Container(
-                          height: 2,
-                          width: MediaQuery.of(context).size.width / 7,
-                          color: Colors.black,
-                        ),
-                        PageIndicator(
-                          number: 2,
-                          current: widget.slideIndex + 1,
-                        ),
-                        Container(
-                          height: 2,
-                          width: MediaQuery.of(context).size.width / 7,
-                          color: Colors.black,
-                        ),
-                        PageIndicator(
-                          number: 3,
-                          current: widget.slideIndex + 1,
-                        ),
-                        Container(
-                          height: 2,
-                          width: MediaQuery.of(context).size.width / 7,
-                          color: Colors.black,
-                        ),
-                        PageIndicator(
-                          number: 4,
-                          current: widget.slideIndex + 1,
-                        ),
-                      ],
-                    ),
+                  SizedBox(
+                    height: 35,
                   ),
                   Text(
                     "Create Password",
@@ -100,6 +62,12 @@ class _PasswordUIState extends State<PasswordUI> {
                     padding: const EdgeInsets.only(top: 25, bottom: 35),
                     child: TextFormField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (val) {
+                        if (val.complexity() != 3) {
+                          return "Your password doesn't meet requirement";
+                        }
+                        return null;
+                      },
                       onChanged: (value) {
                         setState(() {
                           passwordUnique = value.complexity();
@@ -126,14 +94,14 @@ class _PasswordUIState extends State<PasswordUI> {
                         hintStyle: TextStyle(color: Color(0x7F231F20)),
                         enabledBorder: const OutlineInputBorder(
                           borderSide: const BorderSide(
-                              color: Colors.transparent, width: 0),
+                              color: Colors.transparent, width: 2),
                           borderRadius: BorderRadius.all(
                             Radius.circular(6.0),
                           ),
                         ),
                         focusedBorder: const OutlineInputBorder(
                           borderSide: const BorderSide(
-                              color: Colors.transparent, width: 0),
+                              color: Colors.transparent, width: 2),
                           borderRadius: BorderRadius.all(
                             Radius.circular(6.0),
                           ),
@@ -290,7 +258,7 @@ class _PasswordUIState extends State<PasswordUI> {
                 bottom: MediaQuery.of(context).viewInsets.bottom),
             child: BaseButton(
               onTap: () {
-                if (formKey.currentState.validate()) {
+                if (isUpperCase && isLowerCase && isCharacter && isNumber) {
                   widget.next(true);
                 }
               },

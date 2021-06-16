@@ -102,12 +102,13 @@ class _PersonalUIState extends State<PersonalUI> {
                 bottom: MediaQuery.of(context).viewInsets.bottom),
             child: BaseButton(
               onTap: () {
+                print(selectedExpense);
                 if ((selectedIncome != null &&
                         selectedGoals != null &&
                         selectedExpense != null) &&
-                    (selectedIncome > 0 &&
-                        selectedGoals > 0 &&
-                        selectedExpense > 0)) {
+                    (selectedIncome >= 0 &&
+                        selectedGoals >= 0 &&
+                        selectedExpense >= 0)) {
                   widget.next(true);
                 } else {
                   widget.next(false);

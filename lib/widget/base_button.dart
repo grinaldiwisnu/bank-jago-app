@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class BaseButton extends StatelessWidget {
   final Function onTap;
+  final String title;
 
-  const BaseButton({Key key, this.onTap}) : super(key: key);
+  const BaseButton({Key key, this.onTap, this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class BaseButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
-              "Next",
+              title ?? "Next",
               style: TextStyle(
                   fontSize: 18,
                   color: Colors.white,

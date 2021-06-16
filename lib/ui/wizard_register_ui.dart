@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gin_finans/ui/finish_u_i.dart';
 import 'package:gin_finans/ui/password_ui.dart';
 import 'package:gin_finans/ui/personal_ui.dart';
+import 'package:gin_finans/ui/schedule_ui.dart';
 import 'package:gin_finans/widget/page_indicator.dart';
 
 class WizardRegisterUI extends StatefulWidget {
@@ -133,12 +135,13 @@ class _WizardRegisterUIState extends State<WizardRegisterUI> {
                         navigatePage(2, val);
                       },
                     ),
-                    Container(
-                      color: Color(0xff3C80E3),
+                    ScheduleUI(
+                      slideIndex: slideIndex,
+                      next: (val) {
+                        navigatePage(3, val);
+                      },
                     ),
-                    Container(
-                      color: Color(0xff3C80E3),
-                    ),
+                    FinishUI()
                   ],
                   allowImplicitScrolling: true,
                   onPageChanged: (value) {

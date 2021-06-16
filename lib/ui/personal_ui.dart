@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gin_finans/widget/app_alert_dialog.dart';
 import 'package:gin_finans/widget/base_button.dart';
 import 'package:gin_finans/widget/dropdown_custom.dart';
 
@@ -111,7 +112,13 @@ class _PersonalUIState extends State<PersonalUI> {
                         selectedExpense >= 0)) {
                   widget.next(true);
                 } else {
-                  widget.next(false);
+                  AppAlertDialog(
+                      title: "Warning",
+                      description:
+                          "Please select the option to continue registering.",
+                      positiveButtonText: 'Okay',
+                      positiveButtonOnTap: () =>
+                          Navigator.pop(context)).show(context);
                 }
               },
             ),

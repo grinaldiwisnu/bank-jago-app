@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gin_finans/widget/app_alert_dialog.dart';
 import 'package:gin_finans/widget/base_button.dart';
 import 'package:gin_finans/widget/dropdown_custom.dart';
 
@@ -110,6 +111,14 @@ class _ScheduleUIState extends State<ScheduleUI> {
                 print(this.selectedDate);
                 if (selectedDate != null) {
                   widget.next(true);
+                } else {
+                  AppAlertDialog(
+                      title: "Warning",
+                      description:
+                          "Please select the date and time to continue registering.",
+                      positiveButtonText: 'Okay',
+                      positiveButtonOnTap: () =>
+                          Navigator.pop(context)).show(context);
                 }
               },
             ),

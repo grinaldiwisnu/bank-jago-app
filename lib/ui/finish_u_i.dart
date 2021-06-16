@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gin_finans/ui/main_ui.dart';
 import 'package:gin_finans/widget/base_button.dart';
 
 class FinishUI extends StatefulWidget {
@@ -66,7 +67,11 @@ class _FinishUIState extends State<FinishUI> {
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: BaseButton(
             title: "Done",
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => MainUI()),
+                  (route) => false);
+            },
           ),
         ));
   }

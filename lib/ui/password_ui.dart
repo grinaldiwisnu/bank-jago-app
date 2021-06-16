@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gin_finans/utils/extensions.dart';
+import 'package:gin_finans/widget/app_alert_dialog.dart';
 import 'package:gin_finans/widget/base_button.dart';
 
 class PasswordUI extends StatefulWidget {
@@ -260,6 +261,13 @@ class _PasswordUIState extends State<PasswordUI> {
               onTap: () {
                 if (isUpperCase && isLowerCase && isCharacter && isNumber) {
                   widget.next(true);
+                } else {
+                  AppAlertDialog(
+                      title: "Warning",
+                      description: "Please fulfill the password requirement.",
+                      positiveButtonText: 'Okay',
+                      positiveButtonOnTap: () =>
+                          Navigator.pop(context)).show(context);
                 }
               },
             ),
